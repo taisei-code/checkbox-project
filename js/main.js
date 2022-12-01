@@ -1,27 +1,28 @@
 'use strict'
 
+// チェックボタン・送信ボタンを取得
 const triggerChecks = document.querySelectorAll('.check_input');
 const signupButton  = document.getElementById('signup_button');
 
+// 送信ボタンを無効化・無効状態のcssを適用(is-inactive)
 signupButton.disabled = true;
 signupButton.classList.add('is-inactive');
 
-Array.from(triggerChecks, el => {
-  el.addEventListener("change", function () {
-
-      if (getCheckedLength() === triggerChecks.length) {
-          signupButton.disabled = false;
-          signupButton.classList.remove('is-inactive');
-          signupButton.classList.add('is-active');
-      } else {
-          signupButton.disabled = true;
-          signupButton.classList.remove('is-active');
-          signupButton.classList.add('is-inactive');
-      }
-  })
-})
-
-  const getCheckedLength = () => document.querySelectorAll('.check_input:checked').length;
+for (const triggerCheck of triggerChecks) {
+  triggerCheck.addEventListener('change', function() {
+    //チェックボックスがチェックされているか判定
+    if(this.checked) {
+      signupButton.disabled = false;
+      signupButton.classList.remove('is-inactive');
+      signupButton.classList.add('is-active');
+    } else {
+      signupButton.disabled = true;
+      signupButton.classList.remove('is-active');
+      signupButton.classList.add('is-inactive');
+    }
+  }, false);
+};
+  
 
 
 
