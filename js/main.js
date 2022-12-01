@@ -6,16 +6,22 @@ const signupButton  = document.getElementById('signup_button');
 signupButton.disabled = true;
 signupButton.classList.add('is-inactive');
 
-.addEventlistener("change", function() {
+Array.from(triggerChecks, el => {
+  el.addEventListener("change", function () {
 
-  if() {
-
-  } else {
-
-  }
+      if (getCheckedLength() === triggerChecks.length) {
+          signupButton.disabled = false;
+          signupButton.classList.remove('is-inactive');
+          signupButton.classList.add('is-active');
+      } else {
+          signupButton.disabled = true;
+          signupButton.classList.remove('is-active');
+          signupButton.classList.add('is-inactive');
+      }
+  })
 })
 
-const getCheckedLength = () => document.querySelectorAll('.check_input:checked').length;
+  const getCheckedLength = () => document.querySelectorAll('.check_input:checked').length;
 
 
 
